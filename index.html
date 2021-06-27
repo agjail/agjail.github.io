@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href="./main.css" rel="stylesheet" />
+    <title>InformaTV Experiment</title>
+  </head>
+
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <div id="profile" style="display:block">
+    <label for="names">Enter your first name</label>
+    <input type="text" id="namesdrop">
+
+    <label for="DoB">Date of Birth</label>
+    <input type="date" id="DoB" name="DoB" min="1900-01-01" max="2000-12-31" onblur=selectRecording()>
+
+    <div id="errorDoB1" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="errorDoB" style="color:red">The date of birth is not the one expected, please enter again </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="paul" style="display:none">
+    <h2 id="title" style="display=block"> Please listen to the three recordings before answering the following questions.</h2>
+
+    <figcaption>Recording A:</figcaption>
+
+    <iframe id="recordA" frameborder="0" width="500" height="60" src="https://drive.google.com/file/d/1LpmI8R_NBZrJQQylTnrXcoV9ng824KIe/preview?usp=sharing">
+    </iframe>
+
+    <figcaption>Recording B:</figcaption>
+
+    <iframe id="recordA" frameborder="0" width="500" height="60" src="https://drive.google.com/file/d/1LpmI8R_NBZrJQQylTnrXcoV9ng824KIe/preview?usp=sharing">
+    </iframe>
+
+    <figcaption>Recording C:</figcaption>
+
+    <iframe id="recordA" frameborder="0" width="500" height="60" src="https://drive.google.com/file/d/1LpmI8R_NBZrJQQylTnrXcoV9ng824KIe/preview?usp=sharing">
+    </iframe>
+  </div>
+  <br> </br>
+  <div id=question1 style="display:none">
+
+
+    <div>
+      <input id="allsame" type="radio" onclick="allSame()">The three versions are equally suitable
+    </div>
+    <div>
+      <input id="diff" type="radio" onclick="different()">Some of these versions are more suitable than others
+    </div>
+
+  </div>
+  <br> </br>
+  <div id="bestworst" style="display:none">
+    <div id="divbest">
+      <p>Which version do you consider the most suitable?</p>
+      <button id="bestA" onclick="bestRec(event)" style="display:block"> Recording A </button>
+      <button id="bestB" onclick="bestRec(event)" style="display:block"> Recording B </button>
+      <button id="bestC" onclick="bestRec(event)" style="display:block"> Recording C </button>
+    </div>
+
+    <div id="divworst">
+      <p>Which version do you consider the least suitable?</p>
+      <button id="worstA" onclick="worstRec(event)" style="display:block"> Recording A </button>
+      <button id="worstB" onclick="worstRec(event)" style="display:block"> Recording B </button>
+      <button id="worstC" onclick="worstRec(event)" style="display:block"> Recording C </button>
+    </div>
+  </div>
+
+  <div id="slider" style="display:none">
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <br> </br>
+      <div id='wdiv'>
+      </div>
+      <h3> Least suitable </h3>
+    </div>
+
+    <div id="s">
+      <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div7" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div8" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div9" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+
+      <div id="div10" ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+      <input type="range" min="-4" max="4" value="0" class="slider" id="myRange">
+    </div>
+
+    <div id="div11" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <br> </br>
+      <div id='bdiv'>
+      </div>
+      <h3> Most suitable </h3>
+    </div>
+    
+
+    <div id = 'message'>
+    
+      <br> </br>
+      <br> </br>
+      <br> </br>
+      <br> </br>
+      <br> </br>
+      <br> </br>
+      <br> </br>
+      <br> </br>
+      
+      <a href="#" class="myButton" onclick="cancel()">Change my choices</a>
+
+      <p>For the remaining recording, move the green button on the slider to where you evaluate your confidence with the final recording, in comparison with the other two.
+      </p>
+
+      <div id="divlastrec" style="display:none">
+        <p>
+          The remaining recording is:
+        </p>
+        <p id="errext"></p>
+      </div>
+      <div id="divval" style="display:none">
+        <p>
+          Relative value of the last recording:
+        </p>
+      </div>
+      
+    </div>
+    <br> </br>
+
+  </div>
+
+  <div id="submitAnswer" style="display:none">
+    <div id="feedback"></div>
+
+    <form method="post" id="contact-form">
+      <div class="form-group" style="display:none">
+        <input type="text" class="form-control" id="nameDiff" placeholder="Name" value="">
+      </div>
+      <div class="form-group" style="display:none">
+        <input type="text" class="form-control" id="messagebest" placeholder="Best" value="">
+      </div>
+      <div class="form-group" style="display:none">
+        <input type="text" class="form-control" id="messageLastRec" placeholder="Last" value="">
+      </div><span id="demo" style="display:none"></span>
+      <div class="form-group" style="display:none">
+        <input type="text" class="form-control" id="messageworst" placeholder="Worst" value="">
+      </div>
+      <button type="submit" class="buttonval">
+        Submit answer
+      </button>
+    </form>
+
+  </div>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+var best = new Boolean(false);
+var worst = new Boolean(false);
+var moved = new Boolean(false);
+var diff = new Boolean(false);
+var oldbest = document.createElement("button");
+var oldworst = document.createElement("button");
+var oldlast = [];
+var lastguy = [];
+var lastguydiv = [];
+//var lastguydivtxt = [];
+var a = document.getElementById("bestA").innerHTML;
+var b = document.getElementById("bestB").innerHTML;
+var c = document.getElementById("bestC").innerHTML;
+
+//unusued
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+//unused
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+//unused
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+  var rec = document.getElementById(event.target.id).innerHTML;
+}
+
+//shows recording if DoB matches that of the person selected
+function selectRecording() {
+  var name = document.getElementById("namesdrop").value;
+  var DoB = document.getElementById("DoB").value;
+  switch (name) {
+    case 'Paul':
+      if (DoB == "1991-01-01") {
+        document.getElementById('paul').style.display = 'block';
+        document.getElementById('question1').style.display = 'block';
+        document.getElementById('errorDoB').style.display = 'none';
+        document.getElementById('profile').style.display = 'none';
+      } else {
+        document.getElementById('errorDoB1').style.display = 'block';
+      }
+      break;
+  }
+  document.getElementById('nameDiff').value = name;
+}
+
+//if all are assessed the same then send mail after check
+function allSame() {
+  document.getElementById("bestworst").style.display = "none";
+  document.getElementById("slider").style.display = "none";
+  document.getElementById("submitAnswer").style.display = "block";
+  document.getElementById('messagebest').value = 'Recording A 0';
+  document.getElementById('messageLastRec').value = 'Recording B 0';
+  document.getElementById('messageworst').value = 'Recording C 0';
+  diff = false;
+  document.getElementById('diff').checked = false;
+}
+
+function different() {
+  document.getElementById("bestworst").style.display = "block";
+  document.getElementById("submitAnswer").style.display = "none";
+  cancel();
+  diff = true;
+  document.getElementById('allsame').checked = false;
+}
+
+//prints bestrec in best rec box
+function bestRec(event) {
+  var boxworst = document.getElementById("wdiv").innerHTML;
+  var boxbest = document.getElementById("bdiv").innerHTML;
+  var box = document.getElementById("bdiv");
+  var mes = document.getElementById("messagebest");
+
+  if (best == false) {
+    box.innerHTML = (document.getElementById(event.target.id).innerHTML);
+    document.getElementById(event.target.id).style.display = 'none';
+    best = true;
+    oldbest = document.getElementById(event.target.id);
+  } else {
+    box.innerHTML = "";
+    box.innerHTML = (document.getElementById(event.target.id).innerHTML);
+    document.getElementById(event.target.id).style.display = 'none';
+    oldbest.style.display = 'block';
+    if (oldbest.outerHTML.search("bestA") != -1) {
+      document.getElementById("worstA").style.display = 'block';
+    } else if (oldbest.outerHTML.search("bestB") != -1) {
+      document.getElementById("worstB").style.display = 'block';
+    } else {
+      document.getElementById("worstC").style.display = 'block';
+    }
+    oldbest = document.getElementById(event.target.id);
+  }
+
+  var boxcontent = document.getElementById("bdiv").innerHTML;
+  mes.value = "";
+  if (boxcontent.search("Recording A") != -1) {
+    mes.value = (a + "5");
+    document.getElementById("worstA").style.display = 'none';
+    //document.getElementById("worstB").style.display = 'block';
+    //document.getElementById("worstC").style.display = 'block';
+  } else if (boxcontent.search("Recording B") != -1) {
+    mes.value = (b + "5");
+    document.getElementById("worstB").style.display = 'none';
+    //document.getElementById("worstA").style.display = 'block';
+    //document.getElementById("worstC").style.display = 'block';
+  } else {
+    mes.value = (c + "5");
+    document.getElementById("worstC").style.display = 'none';
+    //document.getElementById("worstB").style.display = 'block';
+    //document.getElementById("worstA").style.display = 'block';
+  }
+
+  if (best && worst) {
+    lastRec();
+  }
+}
+
+//prints worstec in worst rec box
+function worstRec(event) {
+  var boxworst = document.getElementById("wdiv").innerHTML;
+  var boxbest = document.getElementById("bdiv").innerHTML;
+  var box = document.getElementById("wdiv");
+  var mes = document.getElementById("messageworst");
+
+  if (worst == false) {
+    box.innerHTML = (document.getElementById(event.target.id).innerHTML);
+    document.getElementById(event.target.id).style.display = 'none';
+    worst = true;
+    oldworst = document.getElementById(event.target.id);
+  } else {
+    box.innerHTML = "";
+    box.innerHTML = (document.getElementById(event.target.id).innerHTML);
+    document.getElementById(event.target.id).style.display = 'none';
+    oldworst.style.display = 'block';
+    if (oldworst.outerHTML.search("worstA") != -1) {
+      document.getElementById("bestA").style.display = 'block';
+    } else if (oldworst.outerHTML.search("worstB") != -1) {
+      document.getElementById("bestB").style.display = 'block';
+    } else {
+      document.getElementById("bestC").style.display = 'block';
+    }
+    oldworst = document.getElementById(event.target.id);
+  }
+	
+  var boxcontent = document.getElementById("wdiv").innerHTML;
+  mes.value = "";
+  if (boxcontent.search("Recording A") != -1) {
+    mes.value = (a + "-5");
+    document.getElementById("bestA").style.display = 'none';
+    //document.getElementById("bestB").style.display = 'block';
+    //document.getElementById("bestC").style.display = 'block';
+  } else if (boxcontent.search("Recording B") != -1) {
+    mes.value = (b + "-5");
+    document.getElementById("bestB").style.display = 'none';
+    //document.getElementById("bestA").style.display = 'block';
+    //document.getElementById("bestC").style.display = 'block';
+  } else {
+    mes.value = (c + "-5");
+    document.getElementById("bestC").style.display = 'none';
+    //document.getElementById("bestA").style.display = 'block';
+    //document.getElementById("bestB").style.display = 'block';
+  }
+
+  if (best && worst) {
+    lastRec();
+  }
+}
+
+//associates with last rec the value according to slider
+function lastRec() {
+  var boxworst = document.getElementById("div1").innerHTML;
+  var boxbest = document.getElementById("div11").innerHTML;
+  var last = document.getElementById("divlastrec");
+  last.innerHTML = "The remaining recording is:";
+  var divError = document.getElementById("errext");
+  document.getElementById("slider").style.display = 'block';
+  //document.getElementById("cancelChoice").style.display = 'block';
+  if ((boxbest.search("bestA") != -1 && boxworst.search("worstA") != -1) || (boxbest.search("bestB") != -1 && boxworst.search("worstB") != -1) || (boxbest.search("bestC") != -1 && boxworst.search("worstC") != -1)) {
+    last.innerHTML = "The best and worst recordings are equal, if all are equal please click on the button above. Otherwise rearrange the recordings ";
+    return;
+  }
+  if (boxbest.search("bestA") != -1 || boxworst.search("worstA") != -1) {
+    if (boxbest.search("bestB") != -1 || boxworst.search("worstB") != -1) {
+      last.append(c);
+      oldlast = c;
+      lastguy = document.getElementById("bestC");
+    } else {
+      last.append(b);
+      oldlast = b;
+      lastguy = document.getElementById("bestB");
+    }
+  } else {
+    last.append(a);
+    oldlast = a;
+    lastguy = document.getElementById("bestA");
+  }
+
+  document.getElementById("submitAnswer").style.display = "block";
+
+}
+
+
+function moveLast() {
+  var slide = document.getElementById("demo").innerHTML;
+  var lastrec = document.getElementById("divlastrec").innerHTML;
+  if (lastrec.search("Recording A") != -1) { //if the last rec is A
+    switch (slide) {
+      case '-5':
+        document.getElementById("div1").innerHTML += document.getElementById("bestA").innerHTML; // .appendChild(document.getElementById("bestA").innerHTML);
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div1");
+        lastguydivtxt = document.getElementById("div1").innerHTML;
+        break;
+      case '-4':
+        document.getElementById("div2").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div2");
+        break;
+      case '-3':
+        document.getElementById("div3").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div3");
+        break;
+      case '-2':
+        document.getElementById("div4").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div4");
+        break;
+      case '-1':
+        document.getElementById("div5").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div5");
+        break;
+      case '0':
+        document.getElementById("div6").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div6");
+        break;
+      case '1':
+        document.getElementById("div7").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div7");
+        break;
+      case '2':
+        document.getElementById("div8").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div8");
+        break;
+      case '3':
+        document.getElementById("div9").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div9");
+        break;
+      case '4':
+        document.getElementById("div10").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div10");
+        break;
+      case '5':
+        document.getElementById("div11").appendChild(document.getElementById("bestA"));
+        document.getElementById("worstA").style.display = 'none';
+        lastguydiv = document.getElementById("div11");
+        break;
+    }
+  } else if (lastrec.search("Recording B") != -1) {
+    switch (slide) {
+      case '-5':
+        document.getElementById("div1").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div1");
+        break;
+      case '-4':
+        document.getElementById("div2").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div2");
+        break;
+      case '-3':
+        document.getElementById("div3").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div3");
+        break;
+      case '-2':
+        document.getElementById("div4").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div4");
+        break;
+      case '-1':
+        document.getElementById("div5").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div5");
+        break;
+      case '0':
+        document.getElementById("div6").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div6");
+        break;
+      case '1':
+        document.getElementById("div7").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div7");
+        break;
+      case '2':
+        document.getElementById("div8").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div8");
+        break;
+      case '3':
+        document.getElementById("div9").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div9");
+        break;
+      case '4':
+        document.getElementById("div10").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div10");
+        break;
+      case '5':
+        document.getElementById("div11").appendChild(document.getElementById("bestB"));
+        document.getElementById("worstB").style.display = 'none';
+        lastguydiv = document.getElementById("div11");
+        break;
+    }
+  } else {
+    switch (slide) {
+      case '-5':
+        document.getElementById("div1").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div1");
+        break;
+      case '-4':
+        document.getElementById("div2").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div2");
+        break;
+      case '-3':
+        document.getElementById("div3").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div3");
+        break;
+      case '-2':
+        document.getElementById("div4").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div4");
+        break;
+      case '-1':
+        document.getElementById("div5").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div5");
+        break;
+      case '0':
+        document.getElementById("div6").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div6");
+        break;
+      case '1':
+        document.getElementById("div7").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div7");
+        break;
+      case '2':
+        document.getElementById("div8").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div8");
+        break;
+      case '3':
+        document.getElementById("div9").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div9");
+        break;
+      case '4':
+        document.getElementById("div10").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div10");
+        break;
+      case '5':
+        document.getElementById("div11").appendChild(document.getElementById("bestC"));
+        document.getElementById("worstC").style.display = 'none';
+        lastguydiv = document.getElementById("div11");
+        break;
+    }
+  }
+
+}
+
+function submitAns() {
+  var boxworst = document.getElementById("div1").innerHTML;
+  var boxbest = document.getElementById("div11").innerHTML;
+  document.getElementById("nameDiff").value = document.getElementById("namesdrop").value;
+
+  var mes = document.getElementById("messageLastRec");
+  //mes.val() = "";
+  if (boxbest.search("bestA") != -1 || boxworst.search("worstA") != -1) {
+    if (boxbest.search("bestB") != -1 || boxworst.search("worstB") != -1) {
+      mes.value = c;
+    } else {
+      mes.value = b;
+    }
+  } else {
+    mes.value = a;
+  }
+  document.getElementById("messageLastRec").append(document.getElementById("demo").innerHTML);
+  document.getElementById("submitAnswer").style.display = "block";
+}
+
+
+function cancel() {
+  document.getElementById("bdiv").innerHTML = "";;
+  document.getElementById("wdiv").innerHTML = "";
+  document.getElementById("bestC").style.display = 'block';
+  document.getElementById("bestB").style.display = 'block';
+  document.getElementById("bestA").style.display = 'block';
+  document.getElementById("worstA").style.display = 'block';
+  document.getElementById("worstB").style.display = 'block';
+  document.getElementById("worstC").style.display = 'block';
+  document.getElementById("divbest").appendChild(document.getElementById("bestA"));
+  document.getElementById("divbest").appendChild(document.getElementById("bestB"));
+  document.getElementById("divbest").appendChild(document.getElementById("bestC"));
+  document.getElementById("divworst").appendChild(document.getElementById("worstA"));
+  document.getElementById("divworst").appendChild(document.getElementById("worstB"));
+  document.getElementById("divworst").appendChild(document.getElementById("worstC"));
+  best = false;
+  worst = false;
+}
+
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+  document.getElementById("errorDoB1").style.display = "none";
+}
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  moved = true;
+  var boxworst = document.getElementById("div1").innerHTML;
+  var boxbest = document.getElementById("div11").innerHTML;
+  var mes = document.getElementById("messageLastRec");
+  mes.value = "";
+  if (boxbest.search("bestA") != -1 || boxworst.search("worstA") != -1) {
+    if (boxbest.search("bestB") != -1 || boxworst.search("worstB") != -1) {
+      mes.value = (c) + document.getElementById("demo").innerText;
+    } else {
+      mes.value = (b) + document.getElementById("demo").innerText;
+    }
+  } else {
+    mes.value = (a) + document.getElementById("demo").innerText;
+  }
+}
+
+// Process contact form
+$('#contact-form').submit(function(event) {
+
+  if (moved == false) {
+    var boxworst = document.getElementById("div1").innerHTML;
+    var boxbest = document.getElementById("div11").innerHTML;
+    var mes = document.getElementById("messageLastRec");
+    mes.value = "";
+    if (boxbest.search("bestA") != -1 || boxworst.search("worstA") != -1) {
+      if (boxbest.search("bestB") != -1 || boxworst.search("worstB") != -1) {
+        mes.value = (c) + document.getElementById("demo").innerText;
+      } else {
+        mes.value = (b) + document.getElementById("demo").innerText;
+      }
+    } else {
+      mes.value = (a) + document.getElementById("demo").innerText;
+    }
+  }
+  event.preventDefault();
+  $('#feedback').html('');
+  setTimeout(function() {
+    // Get data
+    var data = {
+      'entry.56729842': $('#nameDiff').val(),
+      'entry.1260177096': $('#messagebest').val(),
+      'entry.1919829825': $('#messageLastRec').val(),
+      'entry.487136839': $('#messageworst').val()
+    };
+
+    // Validate form
+    var formSuccess = true;
+    Object.keys(data).forEach(function(key, index) {
+      if (!data[key]) {
+        formSuccess = false;
+        $('#feedback').html('<label class="text-danger">At least one recording is not assessed</label>');
+      }
+    });
+
+    if (formSuccess) {
+      // Send request
+      $.ajax({
+        url: 'https://docs.google.com/forms/d/1HzwqiCQYQ9tnMh68eqeNlNGYNjn2gU9u0RaR4ymlH0U/formResponse',
+        type: 'POST',
+        crossDomain: true,
+        dataType: "xml",
+        data: data,
+        success: function(jqXHR, textStatus, errorThrown) {
+          console.log('Enter on success');
+          $('#feedback').html('<label class="text-success">Message sent!</label>');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('Enter on error');
+          $('#feedback').html('<label class="text-success">Message sent!</label>');
+        }
+      });
+    }
+  }, 300);
+});
+<\script>
