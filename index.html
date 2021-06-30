@@ -30,9 +30,11 @@
   </div>
 
   <div id="paul" style="display:none">
-    <h2 id="title" style="display=block"> Please listen to the three recordings before answering the following questions.</h2>
+    <h2 id="title" style="display=block"> Please listen to the three recordings before answering the following question.</h2>
 
-    <figcaption>Recording A:</figcaption>
+	  The recordings here are not the final ones
+
+    <figcaption>Recording A, Trusted person, real voice:</figcaption>
 
     <audio
         controls
@@ -41,22 +43,39 @@
             <code>audio</code> element.
     </audio>
 
-    <figcaption>Recording B:</figcaption>
+    <figcaption>Recording B, trusted person, computer generated voice:</figcaption>
 
-    <iframe id="recordA" frameborder="0" width="500" height="60" src="https://drive.google.com/file/d/1LpmI8R_NBZrJQQylTnrXcoV9ng824KIe/preview?usp=sharing">
-    </iframe>
+    <audio
+        controls
+        src="./try2.flac">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
 
-    <figcaption>Recording C:</figcaption>
+    <figcaption>Recording C, unknown person's voice:</figcaption>
 
-    <iframe id="recordA" frameborder="0" width="500" height="60" src="https://drive.google.com/file/d/1LpmI8R_NBZrJQQylTnrXcoV9ng824KIe/preview?usp=sharing">
-    </iframe>
+    <audio
+        controls
+        src="./try2.flac">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
+	  
+	<figcaption>Recording D, unknown person's computer generated voice:</figcaption>
+
+    <audio
+        controls
+        src="./try2.flac">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
   </div>
-  <br> </br>
+  <br>
   <div id=question1 style="display:none">
 
 
     <div>
-      <input id="allsame" type="radio" onclick="allSame()">The three versions are equally suitable
+      <input id="allsame" type="radio" onclick="allSame()">The four versions are equally suitable
     </div>
     <div>
       <input id="diff" type="radio" onclick="different()">Some of these versions are more suitable than others
@@ -70,6 +89,7 @@
       <button id="bestA" onclick="bestRec(event)" style="display:block"> Recording A </button>
       <button id="bestB" onclick="bestRec(event)" style="display:block"> Recording B </button>
       <button id="bestC" onclick="bestRec(event)" style="display:block"> Recording C </button>
+	    
     </div>
 
     <div id="divworst">
