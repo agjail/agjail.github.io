@@ -1,8 +1,8 @@
 #div1 {
   float: left;
   text-align: center;
-  height: 100px;
-  width: 13%;
+  height: 50px;
+  width: 8.5%;
   border: 1px solid black;
   background-color: #ffffff;
 }
@@ -11,7 +11,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 11%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#ecfaeb;
 }
@@ -20,7 +20,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 11%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#daf5d6;
 }
@@ -29,7 +29,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 11%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#c7efc2;
 }
@@ -38,7 +38,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 11%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#b5eaae;
 }
@@ -47,7 +47,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 10.5%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#a2e59a;
 }
@@ -56,7 +56,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 10.5%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#7dda71;
 }
@@ -65,7 +65,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 10.5%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#6bd55d;
 }
@@ -74,7 +74,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 10.5%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#58d049;
 }
@@ -83,7 +83,7 @@
   float: left;
   text-align: left;
   height: 50px;
-  width: 11%;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#46cb34;
 }
@@ -91,8 +91,8 @@
 #div11 {
   float: left;
   text-align: center;
-  height: 100px;
-  width: 12%;
+  height: 50px;
+  width: 8.5%;
   border: 1px solid black;
   background-color:#3fb62f;
 }
@@ -113,7 +113,7 @@
 #divbest, #divworst {
   float: left;
   text-align: center;
-  height: 150px;
+  height: 200px;
   width: 48%;
   border: 1px solid black;
 }
@@ -161,7 +161,7 @@
 
 .slider {
   -webkit-appearance: none;
-  width: 99%;
+  width: 96%;
   height: 15px;
   border-radius: 5px;
   background: #d3d3d3;
@@ -237,7 +237,6 @@
 	background-color:#d0451b;
 	border-radius:3px;
 	border:1px solid #942911;
-	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
@@ -245,6 +244,7 @@
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #854629;
+  display:inline-block;
 }
 
 .myButton:hover {
@@ -253,8 +253,8 @@
 }
 
 .myButton:active {
-	position:relative;
-	top:1px;
+	position: relative;
+  top: 5px;
 }
 
 .buttonval {
@@ -276,4 +276,21 @@
 .buttonval:active {
 	position:relative;
 	top:1px;
+}
+
+.divRecX {
+  width: 60px;
+  height: 50px;
+  left: 0px;
+  border: black;
+  
+  font-size: 20px;
+  top: 20px;
+}
+
+.divsliders{
+  width: 90%;
+  height: 150px;
+  left: 50px;
+  position: relative;
 }
