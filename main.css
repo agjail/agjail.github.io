@@ -282,8 +282,7 @@
   width: 60px;
   height: 50px;
   left: 0px;
-  border: black;
-  
+  position: relative;	
   font-size: 20px;
   top: 20px;
 }
@@ -291,6 +290,6 @@
 .divsliders{
   width: 90%;
   height: 150px;
-  left: 50px;
+  left: 62px;
   position: relative;
 }
