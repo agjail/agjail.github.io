@@ -1,84 +1,8 @@
 import React from 'react'
 import './App.css'
 
-class Slider extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleChange = this.handleChange.bind(this);
-	}
-
-	handleChange(event) {
-		this.props.handleChange(event.target.value, this.props.name)
-	}
-
-	render() {
-		// Slider variables
-		const minValue = 1;
-		const maxValue = 20;
-		const step = 1;
-		const name = this.props.name;
-		const bestOption = this.props.bestOption;
-		const worstOption = this.props.worstOption;
-
-		return (
-			<div className="slider row">
-				<div className="col-1">
-					<span>{name}</span>
-				</div>
-					<div className="text-center col">
-						<span className="align-middle">
-						<input
-							className="form-control-range align-middle"
-							type="range"
-							value={this.props.value}
-							min={minValue}
-							max={maxValue}
-							step={step}
-							disabled={bestOption === name || worstOption === name}
-							onChange={this.handleChange}
-							list={"tickmarks-"+name}
-						/>
-				</span>
-				</div>
-			</div>
-		)
-	}
-}
-
-class RadioButton extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.handleChange = this.handleChange.bind(this)
-	}
-
-	handleChange(event, type, name) {
-		this.props.onChange(this.props.type, this.props.name)
-	}
-
-	render() {
-		const name = this.props.name;
-		const bestOption = this.props.bestOption;
-		const worstOption = this.props.worstOption;
-		const hiddenName = ((this.props.type === "best") ? worstOption : bestOption)
-		const checkedName = ((this.props.type === "best") ? bestOption : worstOption)
-
-		return (
-			<div className="radio">
-				<label>
-					<input
-						type="radio"
-						value={name}
-						checked={checkedName === name}
-						onChange={this.handleChange}
-						disabled={hiddenName === name}
-					/>
-				<span className={(hiddenName === name) ? "italic-disabled" : ""}> {name}</span>
-				</label>
-			</div>
-		)
-	}
-}
+import Slider from './Components/Slider.js'
+import RadioButton from './Components/RadioButton.js'
 
 class SliderForm extends React.Component {
 	constructor(props) {
@@ -107,6 +31,21 @@ class SliderForm extends React.Component {
 		this.checkAuth = this.checkAuth.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
+	}
+
+	resetState() {
+		var showOptions = !this.state.showOptions;
+
+		this.setState({
+			bestOption: "",
+			worstOption: "",
+			aValue: 10,
+			bValue: 10,
+			cValue: 10,
+			dValue: 10,
+			eValue: 10,
+			showOptions: showOptions
+		});
 	}
 
 	setSliderValue(sliderName, newValue) {
@@ -159,23 +98,17 @@ class SliderForm extends React.Component {
 					this.setSliderValue(name, 19)
 				}
 			});
-
 			this.setSliderValue(sliderName, 20) // Set best option
 
 		} else {
-
 			// Similarly set all previous 1s to 2s
 			nameArray.forEach((name) => {
 				if (this.getSliderValue(name) === 1) {
 					this.setSliderValue(name, 2)
 				}
 			});
-
 			this.setSliderValue(sliderName, 1)
-
 		}
-
-
 	}
 
 	selectionChange(type, name) {
@@ -197,41 +130,12 @@ class SliderForm extends React.Component {
 
 	handleSliderChange(value, name) {
 		if (value < 20 && value > 1) {
-			switch(name) {
-				case "A":
-					this.setState({aValue: value});
-					break;
-				case "B":
-					this.setState({bValue: value});
-					break;
-				case "C":
-					this.setState({cValue: value});
-					break;
-				case "D":
-					this.setState({dValue: value});
-					break;
-				case "E":
-					this.setState({eValue: value});
-					break;
-				default:
-					break;
-			}
+			this.setSliderValue(value, name)
 		}
 	}
 
 	handleButtonClick() {
-		var showOptions = !this.state.showOptions;
-		// Important to reset state if back button is clicked
-		this.setState({
-			bestOption: "",
-			worstOption: "",
-			aValue: 10,
-			bValue: 10,
-			cValue: 10,
-			dValue: 10,
-			eValue: 10,
-			showOptions: showOptions
-		});
+		this.resetState()
 	}
 
 	handleNameChange(event) {
