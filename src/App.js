@@ -78,9 +78,6 @@ class RadioButton extends React.Component {
 			</div>
 		)
 	}
-
-
-
 }
 
 class SliderForm extends React.Component {
@@ -97,6 +94,7 @@ class SliderForm extends React.Component {
 			bValue: 10,
 			cValue: 10,
 			dValue: 10,
+			eValue: 10,
 			showOptions: false,
 			authenticated: false
 		};
@@ -125,6 +123,9 @@ class SliderForm extends React.Component {
 			case "D":
 				this.setState({dValue: newValue});
 				break;
+			case "E":
+				this.setState({eValue: newValue});
+				break;
 			default:
 				break;
 		}
@@ -140,13 +141,15 @@ class SliderForm extends React.Component {
 				return(this.state.cValue);
 			case "D":
 				return(this.state.dValue);
+			case "E":
+				return(this.state.eValue);
 			default:
 				break;
 		}
 	}
 
 	setBestOrWorst(type, sliderName) {
-		const nameArray = ["A", "B", "C", "D"];
+		const nameArray = ["A", "B", "C", "D", "E"];
 
 		if (type === "best") {
 
@@ -207,6 +210,9 @@ class SliderForm extends React.Component {
 				case "D":
 					this.setState({dValue: value});
 					break;
+				case "E":
+					this.setState({eValue: value});
+					break;
 				default:
 					break;
 			}
@@ -223,6 +229,7 @@ class SliderForm extends React.Component {
 			bValue: 10,
 			cValue: 10,
 			dValue: 10,
+			eValue: 10,
 			showOptions: showOptions
 		});
 	}
@@ -249,11 +256,11 @@ class SliderForm extends React.Component {
     };
 
 		var params = {
-			'entry.1937885906': this.state.name,
 			'entry.366340186': this.state.aValue,
 			'entry.913386205': this.state.bValue,
 			'entry.1565951474:': this.state.cValue,
 			'entry.904094073': this.state.dValue,
+			'entry.1954231844': this.state.eValue,
 		}
 
 		var url = new URL("https://docs.google.com/forms/u/0/d/e/1FAIpQLSd-kQ68XPt_3RsDvl4OwSlXONoIs5GPZYw6YQQIHhKQTXgPqQ/formResponse")
@@ -278,6 +285,7 @@ class SliderForm extends React.Component {
 			bValue: 10,
 			cValue: 10,
 			dValue: 10,
+			eValue: 10,
 			showOptions: false,
 			authenticated: false
 		});
@@ -396,6 +404,19 @@ class SliderForm extends React.Component {
 									</audio>
 								</div>
 							</div>
+
+							<hr/>
+							<div className="row audio-row">
+
+								<div className="col audio-col">
+									<span className="align-middle">Text message:</span>
+								</div>
+
+								<div className="col audio-col">
+									<p> Message text will go here, probably in big text?</p>
+								</div>
+							</div>
+
 						</div>
 					</div>
 
@@ -429,6 +450,13 @@ class SliderForm extends React.Component {
 									/>
 									<RadioButton
 										name="D"
+										type="best"
+										bestOption={this.state.bestOption}
+										worstOption={this.state.worstOption}
+										onChange={this.selectionChange}
+									/>
+									<RadioButton
+										name="E"
 										type="best"
 										bestOption={this.state.bestOption}
 										worstOption={this.state.worstOption}
@@ -469,6 +497,13 @@ class SliderForm extends React.Component {
 										worstOption={this.state.worstOption}
 										onChange={this.selectionChange}
 									/>
+									<RadioButton
+										name="E"
+										type="worst"
+										bestOption={this.state.bestOption}
+										worstOption={this.state.worstOption}
+										onChange={this.selectionChange}
+									/>
 								</div>
 
 							</div>
@@ -504,6 +539,13 @@ class SliderForm extends React.Component {
 										handleChange={this.handleSliderChange}
 										name="D"
 									/>
+									<Slider
+										value={this.state.eValue}
+										bestOption={this.state.bestOption}
+										worstOption={this.state.worstOption}
+										handleChange={this.handleSliderChange}
+										name="E"
+									/>
 
 								</div>
 							</div>
@@ -518,7 +560,7 @@ class SliderForm extends React.Component {
 											className="btn btn-block btn-secondary"
 											hidden={this.state.showOptions}
 											onClick={this.handleFormSubmit}>
-											These 4 recordings are equally suitable
+											These 5 options are equally suitable
 										</button>
 									</div>
 
