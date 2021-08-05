@@ -219,7 +219,7 @@ class SliderForm extends React.Component {
 										/>
 									</div>
 									<div className="col">
-										<label htmlFor="dateofbirth">Date of Birth</label>
+										<label htmlFor="dateofbirth">Date</label>
 										<input
 											id="dateofbirth"
 											type="date"
