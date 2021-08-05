@@ -5,7 +5,11 @@
     - Name: Paul
     - DOB: 01/01/1991
 
-
+Recording convention:
+- real : NameReal
+- comp gen of sender : NameCompGen
+- InfomaTV real : NameITVReal
+- InformaTV gen : NameITVCompGen
 
 ## Developing the site
 
