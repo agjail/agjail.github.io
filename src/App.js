@@ -44,6 +44,8 @@ class SliderForm extends React.Component {
 			cValue: 10,
 			dValue: 10,
 			eValue: 10,
+			trust: 0,
+			utility: 0,
 			showOptions: showOptions
 		});
 	}
@@ -172,6 +174,8 @@ class SliderForm extends React.Component {
 			'entry.904094073': this.state.dValue,
 			'entry.1954231844': this.state.eValue,
 			'entry.1650545957': this.state.name,
+			'entry.646847081': this.state.trust,
+			'entry.779562745': this.state.utility,
 		}
 
 		var url = new URL("https://docs.google.com/forms/u/0/d/e/1FAIpQLSd-kQ68XPt_3RsDvl4OwSlXONoIs5GPZYw6YQQIHhKQTXgPqQ/formResponse")
@@ -197,6 +201,8 @@ class SliderForm extends React.Component {
 			cValue: 10,
 			dValue: 10,
 			eValue: 10,
+			trust: 0,
+			utility: 0,
 			showOptions: false,
 			authenticated: false
 		});
