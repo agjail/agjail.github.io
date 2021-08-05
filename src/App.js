@@ -147,7 +147,7 @@ class SliderForm extends React.Component {
 	}
 
 	checkAuth() {
-		if (this.state.name === "Paul" && this.state.dateBirth === "1991-01-01") {
+		if (this.state.name === "Paul") {
 			this.setState({authenticated: true})
 		}
 	}
@@ -224,7 +224,7 @@ class SliderForm extends React.Component {
 											id="dateofbirth"
 											type="date"
 											className="form-control"
-											value="01-01-1991"
+											value={this.state.dateBirth}
 											onChange={this.handleDateChange}
 										/>
 									</div>
