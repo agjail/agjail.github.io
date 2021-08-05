@@ -224,7 +224,7 @@ class SliderForm extends React.Component {
 											id="dateofbirth"
 											type="date"
 											className="form-control"
-											value={this.state.dateBirth}
+											value="01-01-1991"
 											onChange={this.handleDateChange}
 										/>
 									</div>
