@@ -150,6 +150,12 @@ class SliderForm extends React.Component {
 		if (this.state.name === "Paul") {
 			this.setState({authenticated: true})
 		}
+		if (this.state.name === "Conor") {
+			this.setState({authenticated: true})
+		}
+		if (this.state.name === "Lucy") {
+			this.setState({authenticated: true})
+		}
 	}
 
 	handleFormSubmit() {
@@ -162,9 +168,10 @@ class SliderForm extends React.Component {
 		var params = {
 			'entry.366340186': this.state.aValue,
 			'entry.913386205': this.state.bValue,
-			'entry.1565951474:': this.state.cValue,
+			'entry.1565951474': this.state.cValue,
 			'entry.904094073': this.state.dValue,
 			'entry.1954231844': this.state.eValue,
+			'entry.1650545957': this.state.name,
 		}
 
 		var url = new URL("https://docs.google.com/forms/u/0/d/e/1FAIpQLSd-kQ68XPt_3RsDvl4OwSlXONoIs5GPZYw6YQQIHhKQTXgPqQ/formResponse")
@@ -206,7 +213,7 @@ class SliderForm extends React.Component {
 				<div className="row name-check" hidden={this.state.authenticated}>
 					<div className="col control-group">
 							<form>
-								<p>Please enter your name and date of birth to continue</p>
+								<p>Please enter the name of the person sending the message (ie. 'Conor')</p>
 								<div className="row">
 									<div className="col">
 										<label htmlFor="username">Name</label>
@@ -219,14 +226,7 @@ class SliderForm extends React.Component {
 										/>
 									</div>
 									<div className="col">
-										<label htmlFor="dateofbirth">Date</label>
-										<input
-											id="dateofbirth"
-											type="date"
-											className="form-control"
-											value={this.state.dateBirth}
-											onChange={this.handleDateChange}
-										/>
+										
 									</div>
 
 								</div>
@@ -252,12 +252,12 @@ class SliderForm extends React.Component {
 							<div className="row audio-row">
 
 								<div className="col audio-col">
-									<span className="align-middle">Recording A, Trusted person, real voice:</span>
+									<span className="align-middle">Recording A, high end computer generated voice:</span>
 								</div>
 
 								<div className="col audio-col">
 									<audio controls>
-										<source src="./try2.flac"/>
+										<source src="./ConorReal.flac"/>
 										Your browser does not support the audio element.
 									</audio>
 								</div>
@@ -268,12 +268,12 @@ class SliderForm extends React.Component {
 							<div className="row audio-row">
 
 								<div className="col audio-col">
-									<span className="align-middle">Recording B, Trusted person, generated voice:</span>
+									<span className="align-middle">Recording B, low end computer generated voice:</span>
 								</div>
 
 								<div className="col audio-col">
 									<audio controls>
-										<source src="./try2.flac"/>
+										<source src="./ConorCompGen.flac"/>
 										Your browser does not support the audio element.
 									</audio>
 								</div>
@@ -283,12 +283,12 @@ class SliderForm extends React.Component {
 							<div className="row audio-row">
 
 								<div className="col audio-col">
-									<span className="align-middle">Recording C, Unknown person, real voice:</span>
+									<span className="align-middle">Recording C, InformaTV newscaster, high end computer generated voice:</span>
 								</div>
 
 								<div className="col audio-col">
 									<audio controls>
-										<source src="./try2.flac"/>
+										<source src="./ConorITVReal.m4a"/>
 										Your browser does not support the audio element.
 									</audio>
 								</div>
@@ -298,12 +298,12 @@ class SliderForm extends React.Component {
 							<div className="row audio-row">
 
 								<div className="col audio-col">
-									<span className="align-middle">Recording D, Unknown person, generated voice:</span>
+									<span className="align-middle">Recording D, InformaTV newscaster, low end computer generated voice:</span>
 								</div>
 
 								<div className="col audio-col">
 									<audio controls>
-										<source src="./try2.flac"/>
+										<source src="./ConorITVCompGen.flac"/>
 										Your browser does not support the audio element.
 									</audio>
 								</div>
@@ -317,7 +317,9 @@ class SliderForm extends React.Component {
 								</div>
 
 								<div className="col audio-col">
-									<p> Message text will go here, probably in big text?</p>
+									<h3> Hi Mary
+I hope you are well
+I'll be up tomorrow to take the boys for a walk up the hill and back down and then i'll come over for some dinner and we can talk about what I've been doing at college for the past month</h3>
 								</div>
 							</div>
 
