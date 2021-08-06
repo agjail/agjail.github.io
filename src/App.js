@@ -36,7 +36,6 @@ class SliderForm extends React.Component {
 
 	resetState() {
 		var showOptions = !this.state.showOptions;
-
 		this.setState({
 			bestOption: "",
 			worstOption: "",
@@ -134,7 +133,7 @@ class SliderForm extends React.Component {
 
 	handleSliderChange(value, name) {
 		if (value < 20 && value > 1) {
-			this.setSliderValue(value, name)
+			this.setSliderValue(name, value)
 		}
 	}
 
