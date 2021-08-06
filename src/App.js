@@ -19,6 +19,7 @@ class SliderForm extends React.Component {
 			cValue: 10,
 			dValue: 10,
 			eValue: 10,
+			message: "",
 			showOptions: false,
 			authenticated: false
 		};
@@ -46,6 +47,7 @@ class SliderForm extends React.Component {
 			eValue: 10,
 			trust: 0,
 			utility: 0,
+			message: "",
 			showOptions: showOptions
 		});
 	}
@@ -149,14 +151,19 @@ class SliderForm extends React.Component {
 	}
 
 	checkAuth() {
-		if (this.state.name === "Paul") {
-			this.setState({authenticated: true})
-		}
-		if (this.state.name === "Conor") {
-			this.setState({authenticated: true})
-		}
-		if (this.state.name === "Lucy") {
-			this.setState({authenticated: true})
+		const auth_names = [
+			"Paul",
+			"Conor",
+			"Lucy"
+		]
+
+		if (auth_names.includes(this.state.name)) {
+			fetch(this.state.name  + ".txt")
+				.then((r) => r.text())
+				.then(text  => {
+					this.setState({message: text,
+												 authenticated: true})
+				})
 		}
 	}
 
@@ -191,23 +198,9 @@ class SliderForm extends React.Component {
 												console.error({'Error': error});
 											});
 		console.log(response)
-		this.setState({
-			name: "",
-			dateBirth: '',
-			bestOption: "",
-			worstOption: "",
-			aValue: 10,
-			bValue: 10,
-			cValue: 10,
-			dValue: 10,
-			eValue: 10,
-			trust: 0,
-			utility: 0,
-			showOptions: false,
-			authenticated: false
-		});
-
+		this.resetState()
 	}
+
 	render() {
 		if (this.state.authenticated) {
 			return (
@@ -290,9 +283,9 @@ class SliderForm extends React.Component {
 									</div>
 
 									<div className="col audio-col">
-										<h3> Hi Mary
-		I hope you are well
-		I'll be up tomorrow to take the boys for a walk up the hill and back down and then i'll come over for some dinner and we can talk about what I've been doing at college for the past month</h3>
+										<h3>
+											{this.state.message}
+										</h3>
 									</div>
 								</div>
 
