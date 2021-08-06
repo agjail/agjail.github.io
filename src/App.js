@@ -209,14 +209,286 @@ class SliderForm extends React.Component {
 
 	}
 	render() {
-		return (
+		if (this.state.authenticated) {
+			return (
+
+				<div className="container">
+					<div className="row title">
+						<div className="col control-group">
+							<h1>InformaTV DeepFake Voice Experiment</h1>
+						</div>
+					</div>
+					<div id="auth" hidden={!this.state.authenticated}>
+
+						<div className="row audio-container">
+							<div className="col control-group">
+								<div className="row audio-row">
+
+									<div className="col audio-col">
+										<span className="align-middle">Recording A, high end computer generated voice:</span>
+									</div>
+
+									<div className="col audio-col">
+										<audio controls>
+											<source src="./ConorReal.flac"/>
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+								</div>
+
+								<hr/>
+
+								<div className="row audio-row">
+
+									<div className="col audio-col">
+										<span className="align-middle">Recording B, low end computer generated voice:</span>
+									</div>
+
+									<div className="col audio-col">
+										<audio controls>
+											<source src="./ConorCompGen.flac"/>
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+								</div>
+
+								<hr/>
+								<div className="row audio-row">
+
+									<div className="col audio-col">
+										<span className="align-middle">Recording C, InformaTV newscaster, high end computer generated voice:</span>
+									</div>
+
+									<div className="col audio-col">
+										<audio controls>
+											<source src="./ConorITVReal.m4a"/>
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+								</div>
+
+								<hr/>
+								<div className="row audio-row">
+
+									<div className="col audio-col">
+										<span className="align-middle">Recording D, InformaTV newscaster, low end computer generated voice:</span>
+									</div>
+
+									<div className="col audio-col">
+										<audio controls>
+											<source src="./ConorITVCompGen.flac"/>
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+								</div>
+
+								<hr/>
+								<div className="row audio-row">
+
+									<div className="col audio-col">
+										<span className="align-middle">Text message:</span>
+									</div>
+
+									<div className="col audio-col">
+										<h3> Hi Mary
+		I hope you are well
+		I'll be up tomorrow to take the boys for a walk up the hill and back down and then i'll come over for some dinner and we can talk about what I've been doing at college for the past month</h3>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div className="slider-form" hidden={!this.state.showOptions}>
+
+							<div className="options row">
+
+								<div className="best-option col control-group">
+									<h3>Best Option</h3>
+									<div className="radio-buttons">
+										<RadioButton
+											name="A"
+											type="best"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="B"
+											type="best"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="C"
+											type="best"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="D"
+											type="best"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="E"
+											type="best"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+									</div>
+								</div>
+
+								<div className="worst-option col control-group">
+
+									<h3>Worst Option</h3>
+									<div className="radio-buttons ">
+										<RadioButton
+											name="A"
+											type="worst"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="B"
+											type="worst"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="C"
+											type="worst"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="D"
+											type="worst"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+										<RadioButton
+											name="E"
+											type="worst"
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											onChange={this.selectionChange}
+										/>
+									</div>
+
+								</div>
+							</div>
+
+							<div className="row sliders-row">
+									<div className="col control-group">
+										<Slider
+											value={this.state.aValue}
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											handleChange={this.handleSliderChange}
+											name="A"
+										/>
+										<Slider
+											value={this.state.bValue}
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											handleChange={this.handleSliderChange}
+											name="B"
+										/>
+										<Slider
+											value={this.state.cValue}
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											handleChange={this.handleSliderChange}
+											name="C"
+										/>
+										<Slider
+											value={this.state.dValue}
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											handleChange={this.handleSliderChange}
+											name="D"
+										/>
+										<Slider
+											value={this.state.eValue}
+											bestOption={this.state.bestOption}
+											worstOption={this.state.worstOption}
+											handleChange={this.handleSliderChange}
+											name="E"
+										/>
+
+									</div>
+								</div>
+							</div>
+
+							<div className="row decision-row">
+								<div className="col control-group">
+									<div className="row button-row text-center">
+										<div className="col">
+											<button
+												type="button"
+												className="btn btn-block btn-secondary"
+												hidden={this.state.showOptions}
+												onClick={this.handleFormSubmit}>
+												These 5 options are equally suitable
+											</button>
+										</div>
+
+										<div className="col">
+											<button
+												type="button"
+												className="btn btn-block btn-primary"
+												hidden={this.state.showOptions}
+												onClick={this.handleButtonClick}>
+												Some versions are more suitable than others
+											</button>
+										</div>
+
+									</div>
+									<div className="button-row row text-center">
+										<div className="col">
+											<button
+												type="button"
+												className="btn btn-block btn-secondary"
+												hidden={!this.state.showOptions}
+												onClick={this.handleButtonClick}>
+												Back
+											</button>
+										</div>
+
+										<div className="col">
+										<button
+											type="button"
+											className="btn btn-block btn-primary"
+											hidden={!this.state.showOptions}
+											onClick={this.handleFormSubmit}>
+											Submit
+										</button>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		)
+	} else {
+		return (// If not authenticated display
 			<div className="container">
 				<div className="row title">
 					<div className="col control-group">
 						<h1>InformaTV DeepFake Voice Experiment</h1>
 					</div>
 				</div>
-				<div className="row name-check" hidden={this.state.authenticated}>
+				<div className="row name-check">
 					<div className="col control-group">
 							<form>
 								<p>Please enter the name of the person sending the message (ie. 'Conor')</p>
@@ -232,7 +504,7 @@ class SliderForm extends React.Component {
 										/>
 									</div>
 									<div className="col">
-										
+
 									</div>
 
 								</div>
@@ -251,268 +523,9 @@ class SliderForm extends React.Component {
 
 					</div>
 				</div>
-				<div id="auth" hidden={!this.state.authenticated}>
-
-					<div className="row audio-container">
-						<div className="col control-group">
-							<div className="row audio-row">
-
-								<div className="col audio-col">
-									<span className="align-middle">Recording A, high end computer generated voice:</span>
-								</div>
-
-								<div className="col audio-col">
-									<audio controls>
-										<source src="./ConorReal.flac"/>
-										Your browser does not support the audio element.
-									</audio>
-								</div>
-							</div>
-
-							<hr/>
-
-							<div className="row audio-row">
-
-								<div className="col audio-col">
-									<span className="align-middle">Recording B, low end computer generated voice:</span>
-								</div>
-
-								<div className="col audio-col">
-									<audio controls>
-										<source src="./ConorCompGen.flac"/>
-										Your browser does not support the audio element.
-									</audio>
-								</div>
-							</div>
-
-							<hr/>
-							<div className="row audio-row">
-
-								<div className="col audio-col">
-									<span className="align-middle">Recording C, InformaTV newscaster, high end computer generated voice:</span>
-								</div>
-
-								<div className="col audio-col">
-									<audio controls>
-										<source src="./ConorITVReal.m4a"/>
-										Your browser does not support the audio element.
-									</audio>
-								</div>
-							</div>
-
-							<hr/>
-							<div className="row audio-row">
-
-								<div className="col audio-col">
-									<span className="align-middle">Recording D, InformaTV newscaster, low end computer generated voice:</span>
-								</div>
-
-								<div className="col audio-col">
-									<audio controls>
-										<source src="./ConorITVCompGen.flac"/>
-										Your browser does not support the audio element.
-									</audio>
-								</div>
-							</div>
-
-							<hr/>
-							<div className="row audio-row">
-
-								<div className="col audio-col">
-									<span className="align-middle">Text message:</span>
-								</div>
-
-								<div className="col audio-col">
-									<h3> Hi Mary
-I hope you are well
-I'll be up tomorrow to take the boys for a walk up the hill and back down and then i'll come over for some dinner and we can talk about what I've been doing at college for the past month</h3>
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div className="slider-form" hidden={!this.state.showOptions}>
-
-						<div className="options row">
-
-							<div className="best-option col control-group">
-								<h3>Best Option</h3>
-								<div className="radio-buttons">
-									<RadioButton
-										name="A"
-										type="best"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="B"
-										type="best"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="C"
-										type="best"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="D"
-										type="best"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="E"
-										type="best"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-								</div>
-							</div>
-
-							<div className="worst-option col control-group">
-
-								<h3>Worst Option</h3>
-								<div className="radio-buttons ">
-									<RadioButton
-										name="A"
-										type="worst"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="B"
-										type="worst"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="C"
-										type="worst"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="D"
-										type="worst"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-									<RadioButton
-										name="E"
-										type="worst"
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										onChange={this.selectionChange}
-									/>
-								</div>
-
-							</div>
-						</div>
-
-						<div className="row sliders-row">
-								<div className="col control-group">
-									<Slider
-										value={this.state.aValue}
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										handleChange={this.handleSliderChange}
-										name="A"
-									/>
-									<Slider
-										value={this.state.bValue}
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										handleChange={this.handleSliderChange}
-										name="B"
-									/>
-									<Slider
-										value={this.state.cValue}
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										handleChange={this.handleSliderChange}
-										name="C"
-									/>
-									<Slider
-										value={this.state.dValue}
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										handleChange={this.handleSliderChange}
-										name="D"
-									/>
-									<Slider
-										value={this.state.eValue}
-										bestOption={this.state.bestOption}
-										worstOption={this.state.worstOption}
-										handleChange={this.handleSliderChange}
-										name="E"
-									/>
-
-								</div>
-							</div>
-						</div>
-
-						<div className="row decision-row">
-							<div className="col control-group">
-								<div className="row button-row text-center">
-									<div className="col">
-										<button
-											type="button"
-											className="btn btn-block btn-secondary"
-											hidden={this.state.showOptions}
-											onClick={this.handleFormSubmit}>
-											These 5 options are equally suitable
-										</button>
-									</div>
-
-									<div className="col">
-										<button
-											type="button"
-											className="btn btn-block btn-primary"
-											hidden={this.state.showOptions}
-											onClick={this.handleButtonClick}>
-											Some versions are more suitable than others
-										</button>
-									</div>
-
-								</div>
-								<div className="button-row row text-center">
-									<div className="col">
-										<button
-											type="button"
-											className="btn btn-block btn-secondary"
-											hidden={!this.state.showOptions}
-											onClick={this.handleButtonClick}>
-											Back
-										</button>
-									</div>
-
-									<div className="col">
-										<button
-											type="button"
-											className="btn btn-block btn-primary"
-											hidden={!this.state.showOptions}
-											onClick={this.handleFormSubmit}>
-											Submit
-										</button>
-									</div>
-								</div>
-							</div>
-					</div>
-				</div>
 			</div>
-		);
+		)
+		}
 	}
 }
 
