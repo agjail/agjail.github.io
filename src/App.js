@@ -1,8 +1,9 @@
 import React from 'react'
 import './App.css'
 
-import Slider from './Components/Slider.js'
-import RadioButton from './Components/RadioButton.js'
+import Slider from './Components/Slider'
+import RadioButton from './Components/RadioButton'
+import LikertScale from './Components/LikertScale'
 
 class SliderForm extends React.Component {
 	constructor(props) {
@@ -14,6 +15,8 @@ class SliderForm extends React.Component {
 			dateBirth: date,
 			bestOption: "",
 			worstOption: "",
+			trust: -1,
+			utility: -1,
 			aValue: 10,
 			bValue: 10,
 			cValue: 10,
@@ -31,6 +34,7 @@ class SliderForm extends React.Component {
 		this.handleDateChange = this.handleDateChange.bind(this);
 		this.checkAuth = this.checkAuth.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		this.handleLikertChange = this.handleLikertChange.bind(this);
 
 	}
 
@@ -44,8 +48,8 @@ class SliderForm extends React.Component {
 			cValue: 10,
 			dValue: 10,
 			eValue: 10,
-			trust: 0,
-			utility: 0,
+			trust: 1000,
+			utility: 1000,
 			message: "",
 			showOptions: showOptions
 		});
@@ -165,6 +169,17 @@ class SliderForm extends React.Component {
 				})
 		}
 	}
+
+	handleLikertChange(type, score) {
+		if (type === "trust") {
+			this.setState({trust: parseInt(score)})
+		} else if (type === "utility") {
+			this.setState({utility: parseInt(score)})
+		}
+		console.log(this.state)
+
+	}
+
 
 	handleFormSubmit() {
 		const requestOptions = {
@@ -419,6 +434,24 @@ class SliderForm extends React.Component {
 										/>
 
 									</div>
+								</div>
+							</div>
+
+							<div className="row">
+								<div className="col control-group">
+									<LikertScale
+										className="mb-4"
+										type="trust"
+										selected={this.state.trust}
+										question="Would you trust such a system? (its ability to recreate the voice of someone you know)"
+										handleChange={this.handleLikertChange}
+									/>
+									<LikertScale
+										type="utility"
+										selected={this.state.utility}
+										question="Do you believe it would be useful to have a synthetic message reader in a system such as InformaTV?"
+										handleChange={this.handleLikertChange}
+									/>
 								</div>
 							</div>
 

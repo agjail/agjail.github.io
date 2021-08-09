@@ -21,3 +21,8 @@ audio {
   font-style: italic;
   color: #aaa;
 }
+
+.likert-group-text {
+  font-size: 1rem;
+  text-align: center;
+}
