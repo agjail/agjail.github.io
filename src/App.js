@@ -239,7 +239,7 @@ class SliderForm extends React.Component {
 
 									<div className="col audio-col">
 										<audio controls>
-											<source src={this.state.name + "Real.flac"}/>
+											<source src={this.state.name + "Real.m4a"}/>
 											Your browser does not support the audio element.
 										</audio>
 									</div>
@@ -270,7 +270,7 @@ class SliderForm extends React.Component {
 
 									<div className="col audio-col">
 										<audio controls>
-											<source src={this.state.name + "ITVReal.m4a"}/>
+											<source src={this.state.name + "ITVReal.flac"}/>
 											Your browser does not support the audio element.
 										</audio>
 									</div>
