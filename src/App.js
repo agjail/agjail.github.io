@@ -159,7 +159,7 @@ class SliderForm extends React.Component {
 			"Conor",
 			"Lucy", 
 			"Agathe1",
-			"Agathe2"
+			"Agathe"
 		]
 
 		if (auth_names.includes(this.state.name)) {
